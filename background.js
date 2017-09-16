@@ -36,7 +36,7 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
     if (! alarm.name == "social_timeout") {
         return;
     }
-    alert("You've been on social media too long!");
+    console.log("Alarm fired (background script)");
     // send a message back to the active tab creating the popup
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         tabUrl = tabs[0].url;
