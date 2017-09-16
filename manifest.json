@@ -7,14 +7,22 @@
     "version": "1.0",
 
     "background": {
-        "scripts": ["background.js"],
+        "scripts": ["background.js", "lib/jquery.min.js"],
         "persistent": false
     },
+
+    "content_scripts": [
+        {
+            "js": ["lib/jquery.min.js", "content_script.js"],
+            "matches": ["http://www.google.com/*"]
+        }
+    ],
+
     "page_action": {
-        "default_icon": "pug_favicon.png",
-        "default_popup": "popup.html"
+        "default_icon": "pug_favicon.png"
     },
+
     "permissions": [
-        "declarativeContent" 
+        "declarativeContent", "tabs", "http://www.google.com/*"
     ]
 }

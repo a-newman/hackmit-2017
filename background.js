@@ -1,6 +1,3 @@
-// Copyright (c) 2011 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
 // When the extension is installed or upgraded ...
 chrome.runtime.onInstalled.addListener(function() {
   // Replace all rules ...
@@ -20,3 +17,13 @@ chrome.runtime.onInstalled.addListener(function() {
     ]);
   });
 });
+
+//chrome.declarativeContent.onPageChanged.
+///document.onload = function() {
+///    console.log("Running script");
+///    setTimeout(function() {
+///        alert("WOW you've spent a lot of time on FB lately");
+///    }, 3000);
+///}
+
+
