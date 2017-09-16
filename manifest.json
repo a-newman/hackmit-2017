@@ -1,16 +1,20 @@
 {
     "manifest_version": 2,
-    
+
     "name": "HackMIT2017",
 
     "description": "Helps block excessive social media usage",
     "version": "1.0",
 
-    "browser_action": {
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "page_action": {
         "default_icon": "pug_favicon.png",
         "default_popup": "popup.html"
-    }, 
+    },
     "permissions": [
-        "activeTab"
+        "declarativeContent" 
     ]
 }
