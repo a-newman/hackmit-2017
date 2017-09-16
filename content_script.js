@@ -31,12 +31,11 @@ function create_popup() {
 
 $(document).ready(function() {
     chrome.runtime.sendMessage({"social_timeout": "social_visit"}, function() {});
-    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-        console.log("Received an alarm in the active tab");
-        if (request.social_timeout && request.social_timeout == "time_expired") {
-            // create a popup
-            console.log("too much time on social media");
-            create_popup();
-        }
-    });
 })
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.social_timeout && request.social_timeout == "time_expired") {
+        // create a popup
+        create_popup();
+    }
+});
