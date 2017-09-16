@@ -13,10 +13,10 @@ div.appendChild( btnForm );
 btnForm.appendChild( btn );
 //set attributes for div
 div.id = 'myDivId';
-div.style.zindex = '20';
+div.style.zindex = '100000000';
 div.style.position = 'fixed';
-div.style.top = '100%';
-div.style.left = '100%';
+div.style.top = '0%';
+div.style.left = '0%';
 div.style.width = '100%';   
 div.style.height = '100%';
 div.style.backgroundColor = 'black';
