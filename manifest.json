@@ -14,7 +14,7 @@
     "content_scripts": [
         {
             "js": ["lib/jquery.min.js", "content_script.js"],
-            "matches": ["http://www.google.com/*"]
+            "matches": ["<all_urls>"]
         }
     ],
 
