@@ -21,14 +21,7 @@ div.style.width = '100%';
 div.style.height = '100%';
 div.style.backgroundColor = 'black';
 
-//set attributes for btnForm
-btnForm.action = '';
-
-//set attributes for btn
-//"btn.removeAttribute( 'style' );
-btn.type = 'button';
-btn.value = 'hello';
-btn.style.position = 'absolute';
-btn.style.top = '50%';
-btn.style.left = '50%';
+setTimeout(function() {
+	document.body.removeChild(div);
+}, 1000)
 
