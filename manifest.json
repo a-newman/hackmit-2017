@@ -19,10 +19,14 @@
     ],
 
     "page_action": {
-        "default_icon": "pug_favicon.png"
+        "default_icon": "pug_favicon.png",
+        "default_popup": "popup.html"
     },
 
     "permissions": [
-        "declarativeContent", "tabs", "http://www.google.com/*"
+        "declarativeContent",
+        "contextMenus", 
+        "tabs",
+        "activeTab"
     ]
 }

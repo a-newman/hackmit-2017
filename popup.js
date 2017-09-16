@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
-        alert("WOW you've spent a lot of time on FB lately");
+        chrome.tabs.executeScript({
+			file: 'content.js'
+		});
     }, 3000);
 });
