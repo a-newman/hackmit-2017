@@ -15,14 +15,23 @@ chrome.runtime.onInstalled.addListener(function() {
         ],
         // And shows the extension's page action.
         actions: [ new chrome.declarativeContent.ShowPageAction()]
- ]
       }
     ]);
   });
 });
 
-// This handles to listening to "alarm" events
+// Listens for messages indicating the user has visited a social page, and sets
+// or refreshes an alarm
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (! (request.social_timeout && request.social_timeout == "social_visit")) {
+        return;
+    }
+    // TODO: if an alarm is already set, do not create a new one
+    chrome.alarms.create("social_timeout", {"delayInMinutes": .1});
+});
 
+
+// Listens for alarms indicating a user has exceeded their social timeout
 chrome.alarms.onAlarm.addListener(function(alarm) {
     if (! alarm.name == "social_timeout") {
         return;
@@ -34,7 +43,7 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
         console.log("tabUrl", tabUrl);
         if (tabUrl.indexOf("facebook") !== -1) {
             // Send a message back to that tab
-            chrome.tabs.sendMessage(tabs[0].id, {"social_timeout": "You've been on too long!"});
+            chrome.tabs.sendMessage(tabs[0].id, {"social_timeout": "time_expired"});
         }
     });
 });

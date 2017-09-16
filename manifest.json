@@ -27,6 +27,7 @@
         "declarativeContent",
         "contextMenus", 
         "tabs",
-        "activeTab"
+        "activeTab",
+        "alarms"
     ]
 }

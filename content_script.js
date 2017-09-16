@@ -1,2 +1,3 @@
-console.log("GOT HERE")
-chrome.alarms.create("social_timeout", {delayInMinutes: 0.1})
+$(document).ready(function() {
+    chrome.runtime.sendMessage({"social_timeout": "social_visit"}, function() {});
+})
