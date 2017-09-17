@@ -7,7 +7,7 @@
     "version": "1.0",
 
     "background": {
-        "scripts": ["background.js", "lib/jquery.min.js"],
+        "scripts": ["lib/jquery.min.js", "background.js"],
         "persistent": false
     },
 
@@ -17,6 +17,8 @@
             "matches": ["https://www.facebook.com/*"]
         }
     ],
+
+    "web_accessible_resources": ["blocking_popup.html"],
 
     "page_action": {
         "default_icon": "pug_favicon.png",
@@ -28,6 +30,7 @@
         "contextMenus", 
         "tabs",
         "activeTab",
-        "alarms"
+        "alarms",
+        "https://quizlet.com/"
     ]
 }

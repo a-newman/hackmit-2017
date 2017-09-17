@@ -27,7 +27,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         return;
     }
     // TODO: if an alarm is already set, do not create a new one
-    chrome.alarms.create("social_timeout", {"delayInMinutes": .1});
+    chrome.alarms.create("social_timeout", {"delayInMinutes": .01});
 });
 
 
@@ -47,3 +47,4 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
         }
     });
 });
+
