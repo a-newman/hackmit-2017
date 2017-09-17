@@ -1,11 +1,28 @@
 <!doctype html>
 <html>
   <head>
-    <title>GTmetrix Analyzer</title>
+    <title>Hack2017</title>
     <script src="popup.js"></script>
   </head>
   <body>
     <h1>Hack2017</h1>
-    <button id="checkPage">RIGHT NOW I DO NOTHING</button>
+    Manage Sites:<br>
+    <form>
+      <input type="text" id="text" value="test"><br>
+    </form>
+    <button id="addSite">Add site</button>
+    <button id="removeSite">Remove site</button>
+    <select size="3" name="decision2" id="list">
+      <option selected value=0>
+    </select><br><br>
+    Set activity: <br>
+    <select name="decision1" id="dropdown">
+      <option> Exercise
+      <option> Puzzle
+      <option> Quizlet
+    </select><br>
+    <form>
+      <input type="text" id="link" value="none"><br>
+    </form>
   </body>
 </html>
