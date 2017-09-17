@@ -1,4 +1,16 @@
 blocked_sites = 'facebook|twitter'
+var lastTabsUrl = "BeginningDefault";
+
+
+function makeAlarm(name, delayMinutes) {
+    // TODO: if an alarm is already set, do not create a new one
+    chrome.alarms.create(name, {"delayInMinutes": delayMinutes});
+}
+
+function isSocial(url){
+  return url.indexOf("facebook") !== -1;
+}
+
 
 // This code handles lighting up the icon on monitored pages
 chrome.runtime.onInstalled.addListener(function() {
@@ -20,14 +32,43 @@ chrome.runtime.onInstalled.addListener(function() {
   });
 });
 
+// Listens for events indicating the user switched to a social page, and sets
+// or refreshes an alarm
+chrome.tabs.onActivated.addListener(  
+
+  function(activeInfo) {
+
+   var thisTabsUrl;
+   chrome.tabs.get(activeInfo.tabId, function(tab){
+        thisTabsUrl = tab.url;
+
+        //check if switch was from non-social to social media
+        if (isSocial(thisTabsUrl) && !isSocial(lastTabsUrl)) {
+           //if so, then start an alarm 
+           makeAlarm("social_timeout", .1);
+        }  else if (!isSocial(thisTabsUrl) && isSocial(lastTabsUrl)) { 
+           //if switch away from social media to non social, clear all alarms
+           chrome.alarms.clear("social_timeout");
+        }
+
+        lastTabsUrl = thisTabsUrl;
+
+    })
+}
+
+
+
+)
+
+
+
 // Listens for messages indicating the user has visited a social page, and sets
 // or refreshes an alarm
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (! (request.social_timeout && request.social_timeout == "social_visit")) {
         return;
     }
-    // TODO: if an alarm is already set, do not create a new one
-    chrome.alarms.create("social_timeout", {"delayInMinutes": .01});
+    makeAlarm("social_timeout", .1);
 });
 
 
@@ -36,12 +77,12 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
     if (! alarm.name == "social_timeout") {
         return;
     }
-    console.log("Alarm fired (background script)");
+
+    //alert("You've been on social media too long!");
     // send a message back to the active tab creating the popup
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         tabUrl = tabs[0].url;
-        console.log("tabUrl", tabUrl);
-        if (tabUrl.indexOf("facebook") !== -1) {
+        if (isSocial(tabUrl)) {
             // Send a message back to that tab
             chrome.tabs.sendMessage(tabs[0].id, {"social_timeout": "time_expired"});
         }
